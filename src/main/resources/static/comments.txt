@@ -1,0 +1,58 @@
+
+
+lombok (@Data) used for setters and getters with extra arg constructors
+we have to define @NoArgsConstructor if we want that it is a pain in ass
+
+we added journalEntries and controller services and repository for that
+we added User, and similarly we added controller services and repository for this too.
+
+remember repository should be "Interface" and should extend "MongoRepository<Class , @Id>""
+
+we defined special methods if it's not there in Repository in Mongo Extended Class
+
+we used "ResponseEntity" for special type of "return codes" in client side like "200","404", "201" like that
+
+connected database in "application.properties"
+
+added "dependency" in "pom.xml" for "MongoDB", "Lombok" and loaded Maven
+
+if we want to run this in terminal we should first update it by MVN like "mvn -U clean install" in pom.xml directory
+after updating it we should run "mvn spring-boot:run"
+
+
+the build files go to target directory
+
+we are using "Transaction" like if we add a journal and it updated in Journal entry but failed in User JournalEntries
+it creates a problem so we use Transaction for that
+
+
+"PlatformTransactionManager","MongoDatabaseFactory","MongoTransactionManager"  defined for transaction purposes in main file
+
+
+
+
+
+
+
+
+---the annotations used up to now are ---
+
+1.@Component (to specify it as bean to "IOC" container)
+2.@SpringBootApplication(contains @ComponentScan @EnableAutoConfiguration @Configuration)
+3.@RestController (to specify as bean and do some more functionality)
+4.@Id to specify primary key
+5.@NonNull to specify nonnull
+6.@Indexed(unique = true)  for unique key
+7.@DBRef to reference another Table
+8.@Document(collection = "users") to specify which table the entity should use
+9.@Services to specify it as service
+10.@Repository to specify as repository
+11.@AutoWired to use object of Class from Ioc container
+12.@RequestBody to get data from user in post or put method
+13.@PathVariable to specify it to use variable from Url Path
+14.@GetMapping("?") @PostMapping @DeleteMapping @PutMapping to specify Crud Operation
+15.@Data
+16.@NoArgsConstructor
+17.@Bean we can define this but only for methods
+18.@Transactional  to do transaction
+19.@EnableTransactionManagement in main file for transaction
