@@ -27,6 +27,16 @@ public class User {
     @DBRef // reference to journal_entries
     private List<Journal> journalLists = new ArrayList<>();
 
+    private List<String> roles = new ArrayList<>();
+
+    public List<String> getRoles() {
+        return roles;
+    }
+
+    public void setRoles(List<String> roles) {
+        this.roles = roles;
+    }
+
     public ObjectId getId() {
         return id;
     }
