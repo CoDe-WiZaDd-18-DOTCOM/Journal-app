@@ -35,6 +35,17 @@ public class UserService {
         return null;
     }
 
+    public User saveadmin(User us){
+        User user = ucon.findByUserName(us.getUserName());
+        if(user!=null) ucon.deleteByUserName(user.getUserName());
+        List<String> roles = us.getRoles();
+        roles.add("USER");
+        roles.add("ADMIN");
+        us.setRoles(roles);
+        ucon.save(us);
+        return us;
+    }
+
     public User saveuserjournalentries(User us){
         return ucon.save(us);
     }

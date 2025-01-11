@@ -7,6 +7,8 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/public")
 public class PublicController {
@@ -19,6 +21,9 @@ public class PublicController {
     public User saveEntry(@RequestBody User us){
         if(userRepository.findByUserName(us.getUserName()) == null) {
             us.setPassword(passwordEncoder.encode(us.getPassword()));
+            List<String> li = us.getRoles();
+            li.add("USER");
+            us.setRoles(li);
             userRepository.save(us);
             return us;
         }

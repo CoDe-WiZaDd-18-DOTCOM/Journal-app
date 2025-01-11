@@ -24,10 +24,6 @@ public class UserController {
 
 
     //    get
-    @GetMapping
-    public ResponseEntity<?> getallusers(){
-        return new ResponseEntity<>(userService.getall(), HttpStatus.OK);
-    }
 
     @GetMapping("/{username}")
     public ResponseEntity<User> getbyusername(@PathVariable("username") String username){
