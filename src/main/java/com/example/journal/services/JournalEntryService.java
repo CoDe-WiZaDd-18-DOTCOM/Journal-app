@@ -3,6 +3,7 @@ package com.example.journal.services;
 import com.example.journal.Entities.Journal;
 import com.example.journal.Entities.User;
 import com.example.journal.repository.JournalEntryRepository;
+import com.example.journal.repository.UserRepository;
 import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -10,12 +11,16 @@ import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class JournalEntryService {
 
     @Autowired
     private JournalEntryRepository jen;
+
+    @Autowired
+    private UserRepository userRepository;
 
     //saving entries
     public Journal setentry(Journal jou){
@@ -44,9 +49,17 @@ public class JournalEntryService {
     }
 
     //deleting
-    public boolean deleteentry(ObjectId id){
-        jen.deleteById(id);
-//        User dbuser = us
+    public boolean deleteentry(ObjectId id,User dbuser){
+        Optional<Journal> journal = jen.findById(id);
+        if (journal.isPresent()) {
+            dbuser.getJournalLists().removeIf(jou -> jou.getId().equals(id));
+
+            jen.deleteById(id);
+
+            userRepository.save(dbuser);
+
+            return true;
+        }
         return true;
     }
 }
