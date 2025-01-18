@@ -15,10 +15,6 @@ public class WeatherService {
     @Autowired
     private AppCache appCache;
 
-//    @Value("${weather.api.key}")
-//    private String weatherApi;
-//
-//    private static final String API = "https://api.weatherstack.com/current?access_key=ACCESS_KEY&query=CITY";
 
     @Autowired
     private RestTemplate restTemplate;
