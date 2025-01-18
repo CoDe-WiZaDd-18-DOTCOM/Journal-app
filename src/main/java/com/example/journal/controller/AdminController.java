@@ -16,6 +16,8 @@ public class AdminController {
     @Autowired
     private UserService userService;
 
+    @Autowired
+    private AppCache appCache;
     @GetMapping("/all-users")
     public ResponseEntity<?> getallusers(){
         return new ResponseEntity<>(userService.getall(), HttpStatus.OK);
@@ -24,5 +26,11 @@ public class AdminController {
     @PostMapping("/create-user")
     public ResponseEntity<?> createuser(@RequestBody User user){
         return new ResponseEntity<>(userService.saveadmin(user),HttpStatus.OK);
+    }
+
+    @GetMapping("/clear-cache")
+    public void clearCache(){
+//        appCache.appCache.clear();
+        appCache.init();
     }
 }
