@@ -24,6 +24,9 @@ public class User {
     @NonNull  // should not be null (from Lombok).
     private String password;
 
+    private String email;
+    private Boolean sentimentalAnalysis;
+
     @DBRef // reference to journal_entries
     private List<Journal> journalLists = new ArrayList<>();
 
@@ -67,5 +70,21 @@ public class User {
 
     public void setJournalLists(List<Journal> journalLists) {
         this.journalLists = journalLists;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public Boolean getSentimentalAnalysis() {
+        return sentimentalAnalysis;
+    }
+
+    public void setSentimentalAnalysis(Boolean sentimentalAnalysis) {
+        this.sentimentalAnalysis = sentimentalAnalysis;
     }
 }

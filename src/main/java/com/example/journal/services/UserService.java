@@ -2,6 +2,7 @@ package com.example.journal.services;
 
 import com.example.journal.Entities.User;
 import com.example.journal.repository.UserRepository;
+import com.example.journal.repository.UserRepositoryImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -14,6 +15,9 @@ public class UserService {
 
     @Autowired
     private UserRepository ucon;
+
+    @Autowired
+    private UserRepositoryImpl userRepositoryImpl;
 
     //    finding
     public User findbyusername(String username){
@@ -70,6 +74,12 @@ public class UserService {
             return "True";
         }
         return "False";
+    }
+
+
+//    get
+    public List<User> getUsersWithSA(){
+        return userRepositoryImpl.getAllusersWithSA();
     }
 
 }

@@ -33,4 +33,12 @@ public class AdminController {
 //        appCache.appCache.clear();
         appCache.init();
     }
+
+
+    @GetMapping("/SA")
+    public ResponseEntity<List<User>> getBySA(){
+        List<User> list = userService.getUsersWithSA();
+        if(list.isEmpty()) return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        return new ResponseEntity<>(list,HttpStatus.OK);
+    }
 }
